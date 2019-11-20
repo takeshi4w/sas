@@ -2,6 +2,8 @@ option compress=yes;
 
 %global yyyymmdd000;
 %global yyyymmdd001;
+%global yyyymmdd002;
+%global yyyymmdd003;
 %global yyyymm001;
 %global yyyymm002;
 
@@ -9,10 +11,14 @@ option compress=yes;
 Data _null_;
 	call symput("yyyymmdd000", substr(left(put("&sysdate9."d, yymmddn.)), 1, 8));
 	call symput("yyyymmdd001", substr(left(put("&sysdate9."d - 1, yymmddn.)), 1, 8));
+	call symput("yyyymmdd002", intnx('Month', "&sysdate9."d - 1, 'Beginning'));
+	call symput("yyyymmdd003", intnx('Month', "&sysdate9."d - 1, 'End'));
 	call symput("yyyymm001", substr(left(put("&sysdate9."d - 1, yymmddn.)), 1, 6));
-	call symput("yyyymm001", substr(left(put(intnx('Month', "&sysdate9."d - 1, 'Beginning'), yymmddn.)), 1, 6));
+	call symput("yyyymm002", substr(left(put(intnx('Month', "&sysdate9."d - 1, 'Beginning'), yymmddn.)), 1, 6));
 Run;
 %put &yyyymmdd000.;
 %put &yyyymmdd001.;
+%put &yyyymmdd002.;
+%put &yyyymmdd003.;
 %put &yyyymm001.;
 %put &yyyymm002.;
