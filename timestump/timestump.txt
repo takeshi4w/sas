@@ -1,4 +1,4 @@
 data _null_;
-	'開始時刻', =datetime();
+	'開始時刻'n =datetime();
 	put 開始時刻=nldatm;
 run;
